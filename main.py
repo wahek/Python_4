@@ -6,34 +6,38 @@ import random
 
 size = int(input('Введите степень k многочлена: '))
 koef = [0] * (size + 1)  # Размер многочлена с учётом элемента без x
-for i in range(len(koef)):
-    koef[i] = random.randint(0, 101)
-equation = ''
-print(koef)
-for i in range(len(koef) - 1, -1, -1):
-    if i == size:
-        if koef[i] == 0:
-            equation += ''
-        elif koef[i] == 1:
-            equation += f'x**{i}'
-        else:
-            equation += f'{koef[i]}*x**{i}'
-    elif i == 0:
-        if koef[i] == 0:
-            equation += ''
-        else:
-            equation += f'+{koef[i]}'
-    else:
-        if koef[i] == 0:
-            equation += ''
-        elif koef[i] == 1:
-            equation += f'+x**{i}'
-        else:
-            if i == 1:
-                equation += f'+{koef[i]}*x'
+def get_equation(koef):
+    for i in range(len(koef)):
+        koef[i] = random.randint(0, 101)
+    equation = ''
+    print(koef)
+    for i in range(len(koef) - 1, -1, -1):
+        if i == size:
+            if koef[i] == 0:
+                equation += ''
+            elif koef[i] == 1:
+                equation += f'x**{i}'
             else:
-                equation += f'+{koef[i]}*x**{i}'
+                equation += f'{koef[i]}*x**{i}'
+        elif i == 0:
+            if koef[i] == 0:
+                equation += ''
+            else:
+                equation += f'+{koef[i]}'
+        else:
+            if koef[i] == 0:
+                equation += ''
+            elif koef[i] == 1:
+                equation += f'+x**{i}'
+            else:
+                if i == 1:
+                    equation += f'+{koef[i]}*x'
+                else:
+                    equation += f'+{koef[i]}*x**{i}'
+    return equation
+
+equation = get_equation(koef)
 print(equation)
-
-
+with open('equation.txt', 'w') as data:
+    data.write(equation)
 
