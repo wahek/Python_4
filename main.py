@@ -3,7 +3,6 @@
 # Пример:
 # если k = 2, то многочлены могут быть => 2*x² + 4*x + 5 = 0 или x² + 5 = 0 или 10*x² = 0]
 import random
-
 size = int(input('Введите степень k многочлена: '))
 koef = [0] * (size + 1)  # Размер многочлена с учётом элемента без x
 def get_equation(koef):
@@ -36,8 +35,12 @@ def get_equation(koef):
                     equation += f'+{koef[i]}*x**{i}'
     return equation
 
-equation = get_equation(koef)
+equation = get_equation(koef) + '=0'
+
 print(equation)
 with open('equation.txt', 'w') as data:
     data.write(equation)
-
+equation_2 = get_equation(koef) + '=0'
+print(equation_2)
+with open('equation_2.txt', 'w') as data:
+    data.write(equation_2)
